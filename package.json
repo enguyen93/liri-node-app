@@ -1,7 +1,7 @@
 {
   "name": "liri-node-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is my Liri hw app",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,7 +11,7 @@
     "url": "git+https://github.com/enguyen93/liri-node-app.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "enguyen",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/enguyen93/liri-node-app/issues"
@@ -20,5 +20,6 @@
   "dependencies": {
     "dotenv": "^6.1.0",
     "node-spotify-api": "^1.0.7"
-  }
+  },
+  "devDependencies": {}
 }
