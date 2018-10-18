@@ -14,22 +14,23 @@ var artistBand = inputString[3];
 //Bands in Town for concerts
 //OMDB for movies
 
-if (command === "spotify-this-song") {
-    spotify.search({type: 'track', query: artistBand }, function (err, data) {
-        if (err) {
-            return console.log("error" + err);
-        }
-        console.log(data);
-    });
-}
+// if (command === "spotify-this-song") {
+//     spotify.search({type: 'track', query: artistBand + "&limit=1" }, function (err, data) {
+//         if (err) {
+//             return console.log("error" + err);
+//         }
+//         // console.log(data.tracks.items[0].album.name);
+//         var shortHand = (data.tracks.items[0].album.artists[0]);
+//         var albumShorthand = (data.tracks.items[0].album.name);
 
-if (command === "concert-this") {
+//         console.log("The song name is: " + artistBand);
+//         console.log("The artist of this track is: " + shortHand.name);
+//         console.log("The Spotify Preview URL: " + shortHand.href);
+//         console.log("The Album name is: " + albumShorthand);
 
-}
 
-if (command === "movie-this") {
-    
-}
+//     });
+// }
 
 
 
@@ -54,7 +55,51 @@ if (command === "movie-this") {
 //         }
 //         spotifyThisSong();
 // }
-// console.log(spotify.lookup(type: 'track', ))
+// console.log(spotify.lookup(type: 'track', 
 
 
-// function spotifyThisSong()
+switch (command) {
+    case "spotify-this-song":
+        if (artistBand === "") {
+            predefinedSong();
+        }
+        spotifyThisSong();
+        break;
+
+    // case "concert-this":
+}
+
+
+function spotifyThisSong() {
+
+    spotify.search({ type: 'track', query: artistBand + "&limit=1" }, function (err, data) {
+        var shortHand = (data.tracks.items[0].album.artists[0]);
+        var albumShorthand = (data.tracks.items[0].album.name);
+        if (err) {
+            return console.log("error" + err);
+        }
+        else {
+            console.log("The song name is: " + artistBand);
+            console.log("The artist of this track is: " + shortHand.name);
+            console.log("The Spotify Preview URL: " + shortHand.href);
+            console.log("The Album name is: " + albumShorthand);
+        }
+    });
+};
+
+
+function predefinedSong() {
+
+    spotify.search({ type: 'track', query: + "The Sign Ace of Base" }, function (err, data) {
+        var shortHand = (data.tracks.items[0].album.artists[0]);
+        var albumShorthand = (data.tracks.items[0].album.name);
+        if (err) {
+            return console.log("error" + err);
+        }
+        console.log("The song name is: " + artistBand);
+        console.log("The artist of this track is: " + shortHand.name);
+        console.log("The Spotify Preview URL: " + shortHand.href);
+        console.log("The Album name is: " + albumShorthand);
+    })
+
+}
