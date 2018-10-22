@@ -56,7 +56,7 @@ function spotifyThisSong(thingToLookUp) {
 
 
 function predefinedSong() {
-    
+    newQuery = 'the sign ace of base';
     spotify.search({ type: 'track', query: newQuery + '&limit=1' }, function (err, data) {
         var shortHand = (data.tracks.items[0].album.artists[0]);
         var albumShorthand = (data.tracks.items[0].album.name);
