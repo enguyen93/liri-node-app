@@ -11,7 +11,7 @@ var request = require("request");
 //fs lib
 var fs = require("fs");
 
-// var convertedDate = moment(randomDate, randomFormat);
+
 
 var inputString = process.argv;
 var command = inputString[2];
@@ -83,8 +83,8 @@ function spotifyThisSong(thingToLookUp) {
 //working
 
 function predefinedSong() {
-    newQuery = 'the sign ace of base';
-    spotify.search({ type: 'track', query: newQuery + '&limit=1' }, function (err, data) {
+ 
+    spotify.search({ type: 'track', query: "the+sign+ace+of+base" + '&limit=1' }, function (err, data) {
         var shortHand = (data.tracks.items[0].album.artists[0]);
         var albumShorthand = (data.tracks.items[0].album.name);
         if (err) {
@@ -108,8 +108,7 @@ function concertThis(thingToLookUp) {
         var concert = JSON.parse(body);
         var randomDate = concert[0].datetime;
         var randomFormat = "YYYY/MM/DD/hh:mm:ss";
-        //props to this site for showing the format needed to convert bandsInTownURL's layout for their date
-        //https://dzone.com/articles/using-momentjs-in-nodejs
+        //You have to put into randomFormat the format that bandsInTownURL uses for time, or else its an invalid date when you try and reformat it
         var convertedDate = moment(randomDate, randomFormat);
         var prettyDate = moment(convertedDate).format("MM/DD/YYYY");
         console.log("Name of Venue: " + concert[0].venue.name);
@@ -118,7 +117,6 @@ function concertThis(thingToLookUp) {
     })
 }
 //working
-
 
 function doWhatItSays() {
     fs.readFile("random.txt", "utf8", function (error, data) {
