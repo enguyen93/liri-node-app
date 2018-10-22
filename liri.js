@@ -15,15 +15,19 @@ var thingToLookUp = inputString[3];
 //Spotify for songs
 //Bands in Town for concerts
 //OMDB for movies
-
+//Controller function
+example(command, thingToLookUp);
 
 //working
+function example(command, thingToLookUp) {
+
 switch (command) {
     case "spotify-this-song":
         if (thingToLookUp === "") {
             predefinedSong();
+        } else {
+            spotifyThisSong(thingToLookUp);
         }
-        spotifyThisSong();
         break;
     case "concert-this":
         concertThis();
@@ -31,9 +35,9 @@ switch (command) {
         doWhatItSays();
         break;
 }
+}
 
-
-function spotifyThisSong() {
+function spotifyThisSong(thingToLookUp) {
     //working
     spotify.search({ type: 'track', query: thingToLookUp + "&limit=1" }, function (err, data) {
         var shortHand = (data.tracks.items[0].album.artists[0]);
@@ -52,8 +56,8 @@ function spotifyThisSong() {
 
 
 function predefinedSong() {
-
-    spotify.search({ type: 'track', query: + "The Sign Ace of Base" }, function (err, data) {
+    
+    spotify.search({ type: 'track', query: newQuery + '&limit=1' }, function (err, data) {
         var shortHand = (data.tracks.items[0].album.artists[0]);
         var albumShorthand = (data.tracks.items[0].album.name);
         if (err) {
@@ -65,6 +69,7 @@ function predefinedSong() {
         console.log("The Album name is: " + albumShorthand);
     })
     //for some reason its returning a different band search
+    
 }
 
 function concertThis(thingToLookUp) {
@@ -89,10 +94,10 @@ function doWhatItSays() {
 
         var dataArr = data.split(",");
         // console.log(dataArr);
-        var newCommand = dataArr[0];
+        // var newCommand = dataArr[0];
         var newSong = dataArr[1];
         //figure out how to use the newSong variable to replace "thingToLookUp" that's in the function
-        spotifyThisSong(newSong)
+        spotifyThisSong(newSong);
     }
     )
 };  
