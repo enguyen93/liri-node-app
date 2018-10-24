@@ -12,10 +12,10 @@ var request = require("request");
 var fs = require("fs");
 
 
-
+//
 var inputString = process.argv;
 var command = inputString[2];
-var thingToLookUp = inputString[3];
+var thingToLookUp = process.argv.slice(3).join(" ");
 
 //Controller function
 example(command, thingToLookUp);
@@ -24,7 +24,8 @@ function example(command, thingToLookUp) {
 
     switch (command) {
         case "spotify-this-song":
-            if (thingToLookUp === "") {
+        //in the case that thingToLookUp (third argument, 4th index) doesn't exist
+            if (!thingToLookUp) {
                 predefinedSong();
             } else {
                 spotifyThisSong(thingToLookUp);
@@ -40,7 +41,7 @@ function example(command, thingToLookUp) {
             movieThis(thingToLookUp);
     }
 }
-
+//function that takes the parameter thingToLookUp
 function movieThis(thingToLookUp) {
     var queryUrl = 'http://www.omdbapi.com/?apikey=b6ef9f19&t=' + thingToLookUp;
     //figure out how to put key into .env
@@ -52,10 +53,10 @@ function movieThis(thingToLookUp) {
             var movie = JSON.parse(body);
 
             // Prints out movie info.
-            // console.log(movie);    
             console.log("Title of the movie: " + movie.Title);
             console.log("Year the movie came out: " + movie.Year);
             console.log("IMDB rating of the movie: " + movie.imdbRating);
+            //the function will break if the movie doesn't have a tomatoes rating
             console.log("Rotten Tomatoes Rating of the movie: " + movie.Ratings[1].Value);
             console.log("Country(s) where the movie was produced: " + movie.Country);
             console.log("Language of the movie: " + movie.Language);
@@ -67,23 +68,23 @@ function movieThis(thingToLookUp) {
 //working
 function spotifyThisSong(thingToLookUp) {
     spotify.search({ type: 'track', query: thingToLookUp + "&limit=1" }, function (err, data) {
-        var shortHand = (data.tracks.items[0].album.artists[0]);
-        var albumShorthand = (data.tracks.items[0].album.name);
+        var song = (data.tracks.items[0].album.artists[0]);
+        var album = (data.tracks.items[0].album.name);
         if (err) {
             return console.log("error" + err);
         }
         else {
             console.log("The song name is: " + thingToLookUp);
-            console.log("The artist of this track is: " + shortHand.name);
-            console.log("The Spotify Preview URL: " + shortHand.href);
-            console.log("The Album name is: " + albumShorthand);
+            console.log("The artist of this track is: " + song.name);
+            console.log("The Spotify Preview URL: " + song.href);
+            console.log("The Album name is: " + album);
         }
     });
 };
 //working
 
 function predefinedSong() {
- 
+
     spotify.search({ type: 'track', query: "the+sign+ace+of+base" + '&limit=1' }, function (err, data) {
         var shortHand = (data.tracks.items[0].album.artists[0]);
         var albumShorthand = (data.tracks.items[0].album.name);
@@ -95,9 +96,8 @@ function predefinedSong() {
         console.log("The Spotify Preview URL: " + shortHand.href);
         console.log("The Album name is: " + albumShorthand);
     })
-    //for some reason its returning a different band search
 }
-//not working
+//working
 function concertThis(thingToLookUp) {
     var bandsInTownURL = "https://rest.bandsintown.com/artists/" + thingToLookUp + "/events?app_id=codingbootcamp";
 
