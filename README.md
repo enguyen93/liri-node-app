@@ -1,2 +1,2 @@
 # liri-node-app
-![Quick examples of how this works](https://gyazo.com/e89bbad4887e34edf770cb9cbb0d1baa)
+![Quick examples of how this works](https://giphy.com/gifs/5z0dwOyTOlpGRg8vdj)
