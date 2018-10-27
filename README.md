@@ -1,8 +1,8 @@
 # liri-node-app
 The liri-node-app is an app where you can search up some information once given a command and the argument, or term you want to search.
 If you try and search for a song, it will return to you,
-..*Name of Artist
-..*Song name 
+  *Name of Artist
+  *Song name 
 ..*Preview link of the song from spotify
 ..*Album that the song is from
 
