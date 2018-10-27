@@ -1,25 +1,25 @@
 # liri-node-app
 The liri-node-app is an app where you can search up some information once given a command and the argument, or term you want to search.
 If you try and search for a song, it will return to you,
-  *Name of Artist
-  *Song name 
-..*Preview link of the song from spotify
-..*Album that the song is from
+1. Name of Artist
+2. Song name 
+3. Preview link of the song from spotify
+4. Album that the song is from
 
 Concert search
-..*Name of the venue
-..*Venue location
-..*Date of the event
+1. Name of the venue
+2. Venue location
+3. Date of the event
 
 Movie search
-..*Title of the movie.
-..*Year the movie came out.
-..*IMDB Rating of the movie.
-..*Rotten Tomatoes Rating of the movie.
-..*Country where the movie was produced.
-..*Language of the movie.
-..*Plot of the movie.
-..*Actors in the movie.
+1. Title of the movie.
+2. Year the movie came out.
+3. IMDB Rating of the movie.
+4. Rotten Tomatoes Rating of the movie.
+5. Country where the movie was produced.
+6. Language of the movie.
+7. Plot of the movie.
+8. Actors in the movie.
 
 
 
