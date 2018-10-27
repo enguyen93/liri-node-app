@@ -11,4 +11,4 @@ Quick examples of how this works!
 Example of spotify-this-song command
 ### node liri.js spotify-this-song "All along the watchtower"
 
-## If you do NOT enter in a specified argument after the commands(spotify-this-song, concert-this, movie-this) the searches will default to a search for The sign, and Mr. Nobody.
+### If you do NOT enter in a specified argument after the commands(spotify-this-song, concert-this, movie-this) the searches will default to a search for The sign, and Mr. Nobody.
