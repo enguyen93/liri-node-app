@@ -24,7 +24,7 @@ function example(command, thingToLookUp) {
 
     switch (command) {
         case "spotify-this-song":
-        //in the case that thingToLookUp (third argument, 4th index) doesn't exist
+            //in the case that thingToLookUp (third argument, 4th index) doesn't exist
             if (!thingToLookUp) {
                 predefinedSong();
             } else {
@@ -38,7 +38,11 @@ function example(command, thingToLookUp) {
             doWhatItSays();
             break;
         case "movie-this":
-            movieThis(thingToLookUp);
+            if (!thingToLookUp) {
+                predefinedMovie();
+            } else {
+                movieThis(thingToLookUp);
+            }
     }
 }
 //function that takes the parameter thingToLookUp
@@ -66,6 +70,32 @@ function movieThis(thingToLookUp) {
     });
 }
 //working
+
+function predefinedMovie() {
+    var queryUrl = 'http://www.omdbapi.com/?apikey=b6ef9f19&t=' + "mr nobody";
+    //figure out how to put key into .env
+    request(queryUrl, function (error, response, body) {
+        // If the request is successful...
+        if (!error && response.statusCode === 200) {
+
+            // Parses the body of the site and recovers movie info.
+            var movie = JSON.parse(body);
+
+            // Prints out movie info.
+            console.log("Title of the movie: " + movie.Title);
+            console.log("Year the movie came out: " + movie.Year);
+            console.log("IMDB rating of the movie: " + movie.imdbRating);
+            //the function will break if the movie doesn't have a tomatoes rating
+            console.log("Rotten Tomatoes Rating of the movie: " + movie.Ratings[1].Value);
+            console.log("Country(s) where the movie was produced: " + movie.Country);
+            console.log("Language of the movie: " + movie.Language);
+            console.log("Plot of the movie: " + movie.Plot);
+            console.log("Actors in the movie: " + movie.Actors);
+        }
+    });
+}
+//working
+
 function spotifyThisSong(thingToLookUp) {
     spotify.search({ type: 'track', query: thingToLookUp + "&limit=1" }, function (err, data) {
         var song = (data.tracks.items[0].album.artists[0]);
